@@ -40,8 +40,8 @@ export const updateQuestion=async(req, res)=>{
             $set:{
                 status:status,
             }
-        }, {new:true}).populate("assignedTo").p.populate("userId").populate("_id");
-        // console.log(updateQuestion);
+        }, {new:true});
+        console.log(updateQuestion);
         return res.status(200).json(updatedQuestion);
     }
     catch(error){

@@ -26,7 +26,7 @@ export default function InstructorChart({ questionList }) {
   console.log("label name", labelName);
 
   const assignStatus=questionList?.filter((question)=>question.status==='Assigned');
-  const inProgressStatus=questionList?.filter((question)=>question.status==='inProgress');
+  const inProgressStatus=questionList?.filter((question)=>question.status==='InProgress');
   const doneStatus=questionList?.filter((question)=>question.status==='Done');
   console.log("ass", assignStatus);
   console.log("prg", inProgressStatus);

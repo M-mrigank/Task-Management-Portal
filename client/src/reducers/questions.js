@@ -7,7 +7,8 @@ const questionsReducer=(state={data:null}, action)=>{
         case 'FETCH_ALL_QUESTIONS':
             return {...state, data:action.payload};
         case 'UPDATE_QUESTION':
-            return {...state, data:action?.payload};
+            return state.map((state)=>state._id===action?.payload._id ? action.payload:state);
+            // return {...state, data:action?.payload};
         default:
             return state;
     }

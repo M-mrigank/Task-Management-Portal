@@ -31,15 +31,19 @@ const QuestionDetails = () => {
     // console.log("user  id", user?.result?._id);
     const handlePostAnswer=(event, answerLength)=>{
         event.preventDefault();
+        console.log("chk1");
         if(user===null){
+            console.log("chk2");
             alert("Login or Signup to create a task");
             navigate('/Auth');
         }
         else{
             if(answer===''){
+                console.log("chk3");
                 alert('Create task before submitting');
             }
             else{
+                console.log("here i ammm")
                 status='InProgress';
                 dispatch(updateQuestion(id, {status}));
                 dispatch(postAnswer({id, noOfAnswers:answerLength+1, answerBody:answer, userAnswered:user.result.name}));
