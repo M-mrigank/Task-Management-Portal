@@ -60,6 +60,44 @@
     transition: 0.3s;
 }
 
+.box-style{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.filter-box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+}
+
+.filter-box-1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.filter-box label{
+    font-weight: 600;
+}
+
+.select-style{
+    padding: 0.5rem;
+    border-radius: 10px;
+    border-color: rgb(207, 206, 206);
+    background-color: #e1f3fe;
+    font-size: 0.9rem;
+}
+
+.option-style{
+    color: black;
+}
+
 .question-title-link:hover{
     color: #009dff;
 }

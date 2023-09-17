@@ -36,7 +36,7 @@ const QuestionList = ({questionList}) => {
       
         <Tbody>
           {
-            questionList.map((question, index)=>(
+            questionList?.map((question, index)=>(
                 <Tr key={index} >
                   <Td>
                     <div>

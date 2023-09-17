@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import "./HomeMainbar.css"
 import {useLocation, Link, useNavigate} from "react-router-dom"
 import QuestionList from './QuestionList';
@@ -13,6 +13,9 @@ const HomeMainbar = () => {
   // console.log("ques",questionList);
   // console.log("queslist",listOfQuestions);
 
+  const [quesStatus, setQuesStatus]=useState();
+  const [selectAssigTo, setSelectAssigTo]=useState();
+  
   const location=useLocation();
   const user=useSelector((state)=>state.currentUserReducer);
   const accountType=user?.result?.accountType;
@@ -28,6 +31,17 @@ const HomeMainbar = () => {
   else if(accountType==='User'){
     listOfQuestions=listOfQuestions?.filter((data)=>data?.assignedTo===userEmail);
   }
+  
+  const [selectData, setSelectData]=useState(listOfQuestions);
+  const sarr=listOfQuestions?.map((data)=>data?.status);
+  const statusArray=sarr?.filter((data, index)=>sarr?.indexOf(data)===index);
+
+  console.log("status arry", statusArray);
+
+  const assarr=listOfQuestions?.map((data)=>data?.assignedTo);
+  const assignedToArray=assarr?.filter((data, index)=>assarr?.indexOf(data)===index);
+
+  console.log("ass to arr", assignedToArray);
 
   const checkAuth=()=>{
     if(user===null){
@@ -37,6 +51,39 @@ const HomeMainbar = () => {
     else{
       navigate('/AskQuestions');
     }
+  }
+  
+  
+  function getFilteredData(){
+    if(!quesStatus && !selectAssigTo){
+      console.log("here");
+      return selectData;
+    }
+    if(quesStatus && !selectAssigTo){
+      return selectData?.filter((data)=>data?.status===quesStatus);
+    }
+    if(!quesStatus && selectAssigTo){
+      return selectData?.filter((data)=>data?.assignedTo===selectAssigTo);
+    }
+    if(quesStatus && selectAssigTo){
+      return selectData?.filter((data)=>(data?.assignedTo===selectAssigTo && data?.status===quesStatus));
+    }
+  }
+
+  var finalFilteredData=useMemo(getFilteredData, [quesStatus, selectAssigTo, selectData]);
+
+  console.log("filter data", finalFilteredData);
+
+  useEffect(()=>{
+    setSelectData(listOfQuestions);
+  }, []);
+
+  const handleStatus=(event)=>{
+    setQuesStatus(event?.target?.value);
+  }
+
+  const handleassine=(event)=>{
+    setSelectAssigTo(event?.target?.value);
   }
 
   return (
@@ -60,18 +107,60 @@ const HomeMainbar = () => {
           questionList?.data===null?(
             <h1>Loading...</h1>
           ):(
-            <>
+            <div className='box-style'>
               <p>{questionList.data.length} Tasks Assigned</p>
               {
+                accountType==='Admin' && (
+                  <div className='filter-box'>
+                    <div className='filter-box-1'>
+                      <label htmlFor="status">Status</label>
+                      <select
+                        name='status'
+                        id='status'
+                        onChange={handleStatus}
+                        className='select-style'
+                      >
+                        <option value={""} disabled selected>Status</option>
+                        {
+                          statusArray?.map((data, index)=>(
+                            <option key={index} value={data} className='option-style'>
+                              {data}
+                            </option>
+                          ))
+                        }
+                      </select>
+                    </div>
+                    <div className='filter-box-1'>
+                      <label htmlFor="assignedTo">Assigned To</label>
+                      <select
+                        name='assignedTo'
+                        id='assignedTo'
+                        onChange={handleassine}
+                        className='select-style'
+                      >
+                        <option value={""} disabled selected>Assigned To</option>
+                        {
+                          assignedToArray?.map((data, index)=>(
+                            <option key={index} value={data} className='option-style'>
+                              {data}
+                            </option>
+                          ))
+                        }
+                      </select>
+                    </div>
+                  </div>
+                )
+              }
+              {
                 questionList?.data?.length>0 && (
-                  <>
-                    <QuestionList questionList={listOfQuestions}/>
+                  <div>
+                    <QuestionList questionList={finalFilteredData}/>
                     {/* <QuestionList questionList={questionList.data}/> */}
-                  </>
+                  </div>
                 )
               }
               
-            </>
+            </div>
           )
         }
       </div>
