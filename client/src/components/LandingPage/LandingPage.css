@@ -1,0 +1,41 @@
+.landing-page{
+    margin: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.page-logo{
+    display: flex;
+    justify-content: center;
+}
+
+.heading-style{
+    color: rgb(48, 203, 71);
+}
+
+.lgn-btn{
+    /* position: relative; */
+    width: 20%;
+    padding: 0.2rem 2rem;
+    text-decoration: none;
+    background-color: rgb(36, 121, 241);
+    display: flex;
+    color: white;
+    font-weight: 700;
+    font-size: medium;
+    justify-content: space-between;
+    align-items: baseline;
+    border-radius: 10px;
+}
+
+.logout-page-heading{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.logout-page-heading h1{
+    color: rgb(100, 98, 98);
+}
