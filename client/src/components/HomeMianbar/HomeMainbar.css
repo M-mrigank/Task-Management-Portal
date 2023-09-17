@@ -50,6 +50,11 @@
 }
 
 .question-title-link{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     text-decoration: none;
     color: #037ecb;
     transition: 0.3s;

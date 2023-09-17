@@ -3,6 +3,9 @@ import { Table, Tbody, Td, Th, Thead, Tr } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import { Link } from 'react-router-dom';
 import moment from "moment"
+import {TbActivityHeartbeat} from "react-icons/tb"
+import {MdTaskAlt} from "react-icons/md"
+import {BsListTask} from "react-icons/bs"
 
 const QuestionList = ({questionList}) => {
   return (
@@ -42,6 +45,18 @@ const QuestionList = ({questionList}) => {
                   </Td>
                   <Td>
                     <Link to={`/Questions/${question._id}`} className='question-title-link'>
+                          
+                          {
+                            question?.status==='Assigned'?(
+                              <BsListTask/>
+                            ):(
+                              question?.status==='Done'?(
+                                <MdTaskAlt/>
+                              ):(
+                                <TbActivityHeartbeat/>
+                              )
+                            )
+                          }
                           {question?.questionTitle}
                     </Link>
                   </Td>

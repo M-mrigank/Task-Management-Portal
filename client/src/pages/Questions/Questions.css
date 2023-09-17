@@ -8,6 +8,9 @@
     display: flex;
     gap: 20px;
   }
+  .post-not{
+    cursor: none;
+  }
   .question-details-container {
     margin-bottom: 20px;
     padding-bottom: 20px;
@@ -110,6 +113,16 @@
     cursor: pointer;
     transition: 0.5s all;
   }
+  .post-ans-container form .post-ans-btn1 {
+    margin: 20px 0px;
+    padding: 10px 10px;
+    background-color: #76797a;
+    color: white;
+    border: solid 1px #9ea0a1;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.5s all;
+  }
   
   .post-ans-container form .post-ans-btn:hover {
     background-color: #0086d8;
@@ -126,6 +139,16 @@
     font-size: 14px;
     line-height: 18px;
     white-space: pre-line;
+  }
+
+  .col1{
+    color: rgb(255, 98, 0);
+  }
+  .col2{
+    color: rgb(189, 195, 69);
+  }
+  .col3{
+    color: rgb(64, 255, 0);
   }
   
   @media screen and (max-width: 1020px) {

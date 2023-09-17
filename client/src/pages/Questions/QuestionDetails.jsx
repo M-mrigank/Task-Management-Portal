@@ -15,7 +15,6 @@ const QuestionDetails = () => {
     const {id}=useParams();
     const questionList=useSelector((state)=>state.questionsReducer);
     const [answer, setAnswer]=useState('');
-    const[disableTask, setDisableTask]=useState(false);
     const user=useSelector((state)=>(state.currentUserReducer));
     const accountType=user?.result?.accountType;
     const navigate=useNavigate();
@@ -74,9 +73,6 @@ const QuestionDetails = () => {
     }
 
     const handlerCloseTask=()=>{
-        // console.log("before", disableTask);
-        setDisableTask(!disableTask);
-        // console.log("after", disableTask);
         status='Done';
         dispatch(updateQuestion(id, {status}));
     }
@@ -92,7 +88,18 @@ const QuestionDetails = () => {
                     questionList.data.filter(question=>question._id===id).map((question)=>(
                         <div key={question._id}>
                             <section className='question-details-container'>
-                                <h1>{question.questionTitle}</h1>
+                                <h1>Status : {
+                                    status==='Assigned'?(
+                                        <span className='col1'>{status}</span>
+                                    ):(
+                                        status==='Done'?(
+                                            <span className='col3'>{status}</span>
+                                        ):(
+                                            <span className='col2'>{status}</span>
+                                        )
+                                    )
+                                }</h1>
+                                <h2>{question.questionTitle}</h2>
                                 <div className='question-details-container-2'>
                                     <div className="question-votes">
                                         <img src={upVote} alt="" width={18} className='votes-icon' onClick={handleUpvote}/>
@@ -161,10 +168,10 @@ const QuestionDetails = () => {
                                         ):(
                                             <>
                                                 {
-                                                    disableTask===false ?(
+                                                    status!=='Done' ?(
                                                         <input type='submit' className='post-ans-btn' value="Submit"/>
                                                     ):(
-                                                        <input type='submit' className='post-ans-btn' value="Submit" disabled/>
+                                                        <input type='submit' className='post-ans-btn1 post-not' value="Submit" disabled/>
                                                     )
                                                 }
                                             </>
