@@ -49,7 +49,8 @@ const QuestionDetails = () => {
     }
 
     const location=useLocation();
-    const url=`http://localhost:3000`
+    const url=`https://task-management-backend-w49p.onrender.com`
+    // const url=`http://localhost:3000`
 
     const handleShare=()=>{
         copy(url+location.pathname);
