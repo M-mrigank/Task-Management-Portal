@@ -23,7 +23,7 @@ const QuestionList = ({questionList}) => {
   useEffect(()=>{
     setCurrentTask(questionList?.slice
       (0, pageItemCount));
-  }, []);
+  }, [questionList]);
 
   useEffect(()=>{
     const changePage=(index)=>{
@@ -69,6 +69,7 @@ const QuestionList = ({questionList}) => {
                   <Td>
                     <div>
                       {index+1+((currentPage-1)*pageItemCount)}
+                       {/* {index+1} */}
                     </div>
                   </Td>
                   <Td>
