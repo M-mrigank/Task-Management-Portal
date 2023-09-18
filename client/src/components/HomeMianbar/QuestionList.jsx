@@ -8,10 +8,13 @@ import {MdTaskAlt} from "react-icons/md"
 import {BsListTask} from "react-icons/bs"
 import ResponsivePagination from 'react-responsive-pagination'
 import 'react-responsive-pagination/themes/classic.css'
+import { useSelector } from 'react-redux';
+import {FcExpired} from "react-icons/fc";
 
 const QuestionList = ({questionList}) => {
 
   const pageItemCount=10;
+  const allUsers=useSelector((state)=>state.usersReducer);
   const[currentPage, setCurrentPage]=useState(1);
   const[currentTask, setCurrentTask]=useState([]);
   // const totalPages=10;
@@ -69,8 +72,14 @@ const QuestionList = ({questionList}) => {
                     </div>
                   </Td>
                   <Td>
-                    <Link to={`/Questions/${question._id}`} className='question-title-link'>
-                          
+                    {
+                      (Date.parse(question?.deadline)<Date.now() && question?.status!=='Done')?(
+                        <div className='question-title-link'>
+                          <FcExpired/>
+                          {question?.questionTitle}
+                        </div>
+                      ):(
+                        <Link to={`/Questions/${question._id}`} className='question-title-link'>
                           {
                             question?.status==='Assigned'?(
                               <BsListTask/>
@@ -83,7 +92,10 @@ const QuestionList = ({questionList}) => {
                             )
                           }
                           {question?.questionTitle}
-                    </Link>
+                        </Link>
+                      )
+                    }
+                    
                   </Td>
                   <Td>
                     <div>
@@ -97,7 +109,13 @@ const QuestionList = ({questionList}) => {
                   </Td>
                   <Td>
                     <div>
-                      {moment(question?.deadline).fromNow()}
+                      {
+                        Date.parse(question?.deadline)<Date.now()?(
+                          <p>Expired</p>
+                        ):(
+                          moment(question?.deadline).fromNow()
+                        )
+                      }
                     </div>
                   </Td>
                   <Td>
