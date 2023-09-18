@@ -19,22 +19,6 @@
   .question-details-container-2 {
     display: flex;
   }
-  .question-votes {
-    padding: 5px 20px 5px 10px;
-  }
-  .question-votes p {
-    margin: 0%;
-    font-size: 25px;
-    text-align: center;
-  }
-  .votes-icon {
-    font-size: 40px;
-    cursor: pointer;
-    color: rgb(206, 203, 203);
-  }
-  .votes-icon:active {
-    color: #ef8236;
-  }
   .question-details-container .question-body {
     line-height: 22px;
     white-space: pre-line;

@@ -101,11 +101,6 @@ const QuestionDetails = () => {
                                 }</h1>
                                 <h2>{question.questionTitle}</h2>
                                 <div className='question-details-container-2'>
-                                    <div className="question-votes">
-                                        <img src={upVote} alt="" width={18} className='votes-icon' onClick={handleUpvote}/>
-                                        <p>{question.upVote.length-question.downVote.length}</p>
-                                        <img src={downVote} alt="" width={18} className='votes-icon' onClick={handleDownvote}/>
-                                    </div>
                                     <div style={{width:"100%"}}>
                                         <p className='question-body'>{question.questionBody}</p>
                                         <div className="question-details-tags">

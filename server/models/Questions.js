@@ -28,16 +28,8 @@ const QuestionSchema=mongoose.Schema({
         type:Number,
         default:0,
     },
-    upVote:{
-        type:[String],
-        default:0,
-    },
     status:{
         type:String,
-    },
-    downVote:{
-        type:[String],
-        default:0,
     },
     userPosted:{
         type:String,

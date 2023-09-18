@@ -31,12 +31,9 @@
 
 .display-question-container{
     min-height: 80px;
+    margin-bottom: 1rem;
     background-color: #f9fde2;
     border-bottom: solid 1px #edeff0;
-}
-
-.display-question-container .display-votes-ans{
-    padding: 20px;
 }
 
 .display-question-container p{

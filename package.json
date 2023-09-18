@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@types/material-ui-pagination": "^1.0.4",
+    "material-ui-flat-pagination": "^4.1.2",
+    "materialui-pagination-component": "^1.1.12",
+    "mdbreact": "^5.2.0",
+    "table-sort-js": "^1.0.3"
+  }
+}
